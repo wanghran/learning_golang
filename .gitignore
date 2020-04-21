@@ -1,0 +1,4 @@
+bazel-bin
+bazel-out
+bazel-learning_golang
+bazel-testlogs
