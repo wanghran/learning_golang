@@ -1,17 +1,15 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 
-go_library (
+go_library(
     name = "go_default_library",
-    srcs = [
-        "main.go",
-    ],
+    srcs = ["main.go"],
     importpath = "github.com/wanghran/learning_golang/app/httpserver",
-    deps = ["//app/httpserver/server:go_default_library"],
     visibility = ["//visibility:private"],
+    deps = ["//app/httpserver/server:go_default_library"],
 )
 
-go_binary (
+go_binary(
     name = "main",
-    srcs = ["main.go"],
-    deps = ["//app/httpserver:go_default_library"],
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
 )
