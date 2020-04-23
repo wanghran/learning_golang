@@ -1,9 +1,13 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
+	"os"
+	"time"
 
+	pb "github.com/wanghran/learning_golang/api/protobuf-spec"
 	"google.golang.org/grpc"
 )
 
@@ -13,7 +17,7 @@ const (
 )
 
 func main() {
-	address := fmt.Sprintf("%s:%v", host, common.Port)
+	address := fmt.Sprintf("%s:%v", host, 9090)
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
@@ -23,4 +27,15 @@ func main() {
 	defer conn.Close()
 	c := pb.NewGreeterClient(conn)
 
+	name := defaultName
+	if len(os.Args) > 1 {
+		name = os.Args[1]
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+	if err != nil {
+		log.Fatalf("could not greet: %v", err)
+	}
+	log.Printf("Greeting: %s", r.Message)
 }

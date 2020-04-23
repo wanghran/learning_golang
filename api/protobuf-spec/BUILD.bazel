@@ -5,8 +5,7 @@ load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 proto_library(
     name = "grpc_example_proto",
     srcs = ["grpc_example.proto"],
-    visibility = ["//visibility:public"],
-    # deps = ["//github.com/wanghran/learning_golang/api/protobuf-spec:spec_proto"],
+    visibility = ["//visibility:private"],
 )
 
 go_proto_library(
@@ -14,8 +13,7 @@ go_proto_library(
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
     importpath = "github.com/wanghran/learning_golang/api/protobuf-spec",
     proto = ":grpc_example_proto",
-    visibility = ["//visibility:public"],
-    # deps = ["//github.com/wanghran/learning_golang/api/protobuf-spec:go_default_library"],
+    visibility = ["//visibility:private"],
 )
 
 go_library(
