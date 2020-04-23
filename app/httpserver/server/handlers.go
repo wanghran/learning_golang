@@ -2,12 +2,9 @@ package server
 
 import (
 	"fmt"
+	"net/http"
 )
 
-// func Handler(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Printf("Hi there, I love %s!", r.URL.Path[1:])
-// }
-
-func PrintForFun() {
-	fmt.Println("fun")
+func HandlerPrint(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Hi there, I love %s!", r.URL.Path[1:])
 }
