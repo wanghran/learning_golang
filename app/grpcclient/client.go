@@ -7,17 +7,18 @@ import (
 	"os"
 	"time"
 
-	pb "github.com/wanghran/learning_golang/api/protobuf-spec"
+	pb "github.com/wanghran/learning_golang/api/protobuf-spec/grpc_example"
 	"google.golang.org/grpc"
 )
 
 const (
 	host        = "127.0.0.1"
 	defaultName = "world"
+	port        = 9090
 )
 
 func main() {
-	address := fmt.Sprintf("%s:%v", host, 9090)
+	address := fmt.Sprintf("%s:%d", host, port)
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure())

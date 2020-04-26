@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package grpc_example;
+option go_package = "github.com/wanghran/learning_golang/api/protobuf-spec/grpc_example";
 
 // The greeting service definition.
 service Greeter {
