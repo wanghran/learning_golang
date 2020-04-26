@@ -14,6 +14,7 @@ const (
 )
 
 type server struct {
+	pb.UnimplementedGreeterServer
 }
 
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
